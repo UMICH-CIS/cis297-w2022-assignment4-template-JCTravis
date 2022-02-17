@@ -175,7 +175,7 @@ namespace PatientRecordApplication
            name = Console.ReadLine();
            Console.Write("Enter outstanding balance : ");
 
-           balance = double.Parse(Console.ReadLine());
+           balance = decimal.Parse(Console.ReadLine());
            Patient patient = new Patient(id, name, balance);
            patient.AddtoFile();
            Console.WriteLine("Record has been added to file.");
