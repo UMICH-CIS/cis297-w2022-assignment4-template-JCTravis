@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace PatientRecordApplication
 {
@@ -24,7 +25,7 @@ namespace PatientRecordApplication
         {
             using (StreamWriter writeTo = File.AppendText("PatientFile.txt"))
             {
-                w.WriteLine("ID : " + this.id + ", Name : " + this.name + ", Balance " + this.balance, writeTo);
+                writeTo.WriteLine("ID : " + this.id + ", Name : " + this.name + ", Balance " + this.balance, writeTo);
             }
         }
 
@@ -53,14 +54,61 @@ namespace PatientRecordApplication
 
     class DisplayData : Patient
     {
-        Console.WriteLine("Enter ID");
+        public string identification;
+        Console.ReadLine("Enter ID: ");
 
+        identification = Convert.ToInt32(id);
+
+        public void readPatientFile()
+        {
+            foreach(string line in System.IO.File.ReadLines("PatientFile.txt"))
+            {
+                try
+                { 
+                   if(line.Contains(id))
+
+                    {
+                         Console.WriteLine(line);
+                    }
+                }
+                
+                catch (IndexOutOfRangeException ex)
+                {
+                    Console.WriteLine("either end of file or wrong item selected");
+                }
+                
+            }
+        }
 
     }
 
-    class DisplayBalance
+    class DisplayBalance : Patient
     {
+        public string balance;
+        Console.ReadLine("Enter balance: ");
 
+        balance = Convert.ToDecimal(balance);
+
+        public void readPatientFile()
+        {
+            foreach(string line in System.IO.File.ReadLines("PatientFile.txt"))
+            {
+                try
+                { 
+                   if(line.Contains(balance))
+
+                    {
+                         Console.WriteLine(line);
+                    }
+                }
+                
+                catch (IndexOutOfRangeException ex)
+                {
+                    Console.WriteLine("either end of file or wrong item selected");
+                }
+                
+            }
+        }
     }
 
 
@@ -68,6 +116,7 @@ namespace PatientRecordApplication
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
