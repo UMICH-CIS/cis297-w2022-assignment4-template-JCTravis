@@ -32,11 +32,29 @@ namespace PatientRecordApplication
 
     class ReadFiles : Patient
     {
+        public counter;
+
+        public Patient()
+        {
+            int counter = 0;
+        }
+        
+        public void ReadfromFile()
+        {
+            foreach(string line in System.IO.File.ReadLines("PatientFile.txt"))
+            {
+                System.Console.ReadLine(Line);
+                counter++;
+            }
+        }
+            
 
     }
 
-    class DisplayData
+    class DisplayData : Patient
     {
+        Console.WriteLine("Enter ID");
+
 
     }
 
